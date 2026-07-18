@@ -50,6 +50,25 @@ body {
   max-width: 400px;
 }
 
+.tags-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.tag-pill {
+  background-color: #f3f4f6; 
+  color: #4b5563; 
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  text-transform: lowercase;
+}
+
+
 .blog-name {
   color: #04828b;
   font-family: Georgia, serif;
@@ -229,4 +248,56 @@ body {
 
 .footer .right div:hover {
   color: #04828b;
+}
+
+
+/* bookmarks css*/
+.bookmarks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 500px;
+  margin: 4rem auto;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.bookmarks svg {
+  font-size: 3rem;
+  color: #9ca3af;
+  margin-bottom: 1.5rem;
+}
+
+.bookmarks h2 {
+  color: #111827;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.5px;
+}
+
+.bookmarks p {
+  color: #6b7280;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.bookmark-btn {
+  background-color: #072b7a;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.bookmark-btn:hover {
+  background-color: #1d4ed8;
 }

@@ -1,49 +1,64 @@
 import Blogcard from "../components/BlogCard";
 import React from "react";
 function Home() {
-  const blogs = [
+  const posts = [
     {
       id: 1,
-      name: "futher ethics in age of silcone",
-      description:
-        "A mini React application where users can browse blog posts fetche from a real API, view full post details with comments,  and bookmark their favorites.",
+      title: "His mother had always taught him",
+      body: "His mother had always taught him not to ever think...",
+      tags: ["history", "crime"],
+      reactions: { likes: 192 },
+      userId: 121,
     },
     {
-      id: 2,
-      name: "futher ethics in age of silcone",
-      description:
-        "A mini React application where users can browse blog posts fetche from a real API, view full post details with comments,  and bookmark their favorites.",
+      id: 1,
+      title: "His mother had always taught him",
+      body: "His mother had always taught him not to ever think...",
+      tags: ["history", "crime"],
+      reactions: { likes: 192 },
+      userId: 121,
     },
     {
-      id: 3,
-      name: "futher ethics in age of silcone",
-      description:
-        "A mini React application where users can browse blog posts fetche from a real API, view full post details with comments,  and bookmark their favorites.",
+      id: 1,
+      title: "His mother had always taught him",
+      body: "His mother had always taught him not to ever think...",
+      tags: ["history", "crime"],
+      reactions: { likes: 192 },
+      userId: 121,
     },
     {
-      id: 4,
-      name: "futher ethics in age of silcone",
-      description:
-        "A mini React application where users can browse blog posts fetche from a real API, view full post details with comments,  and bookmark their favorites.",
+      id: 1,
+      title: "His mother had always taught him",
+      body: "His mother had always taught him not to ever think...",
+      tags: ["history", "crime"],
+      reactions: { likes: 192 },
+      userId: 121,
     },
     {
-      id: 5,
-      name: "futher ethics in age of silcone",
-      description:
-        "A mini React application where users can browse blog posts fetche from a real API, view full post details with comments,  and bookmark their favorites.",
+      id: 1,
+      title: "His mother had always taught him",
+      body: "His mother had always taught him not to ever think...",
+      tags: ["history", "crime"],
+      reactions: { likes: 192 },
+      userId: 121,
     },
     {
-      id: 6,
-      name: "futher ethics in age of silcone",
-      description:
-        "A mini React application where users can browse blog posts fetche from a real API, view full post details with comments,  and bookmark their favorites.",
+      id: 1,
+      title: "His mother had always taught him",
+      body: "His mother had always taught him not to ever think...",
+      tags: ["history", "crime"],
+      reactions: { likes: 192 },
+      userId: 121,
     },
   ];
   return (
     <div className="home">
       <div className="intro">
         <h1>welcome to InkWell</h1>
-        <p>a place where stories are written, ideas are shared, and thoughts come to life.</p>
+        <p>
+          a place where stories are written, ideas are shared, and thoughts come
+          to life.
+        </p>
       </div>
       <div className="stories-header">
         <div className="header"></div>
@@ -52,11 +67,10 @@ function Home() {
         <div className="btn">
           <button>+ Create New post</button>
         </div>
-
       </div>
       <div className="blog-grid">
-        {blogs.map((blog) => (
-          <Blogcard blog={blog} key={blog.id} />
+        {posts.map((post) => (
+          <Blogcard post={post} key={post.id} />
         ))}
       </div>
       <footer className="footer">
