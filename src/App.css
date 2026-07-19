@@ -275,7 +275,21 @@ a {
   color: #04828b;
 }
 
+.loading-state, 
+.error-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: system-ui, sans-serif;
+  color: #4b5563;
+}
 
+.error-state {
+  color: #ef4444; 
+}
 /* bookmarks css*/
 .bookmarks {
   display: flex;
@@ -459,4 +473,66 @@ a {
 
 .post-btn .post:hover {
   background-color: #1d4ed8;
+}
+/*error css*/
+.error-banner {
+  background-color: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1300px;
+  margin: 2rem auto 2rem auto;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+.error-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.error-icon {
+  color: #ef4444;
+  font-size: 1.2rem;
+  line-height: 1;
+  margin-top: 0.15rem;
+}
+
+.error-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.error-text-group strong {
+  color: #991b1b;
+  font-size: 0.95rem;
+}
+
+.error-text-group p {
+  color: #b91c1c;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.retry-btn {
+  background-color: #dc2626;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.retry-btn:hover {
+  background-color: #b91c1c;
 }

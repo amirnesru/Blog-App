@@ -1,27 +1,14 @@
-import Blogcard from "../components/BlogCard";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import { MdOutlineReportGmailerrorred } from "react-icons/md";
 import { Link } from "react-router-dom";
-function Home() {
-  const [posts, setposts] = useState([])
-  useEffect(() => {
-    fetch("https://dummyjson.com/posts?limit=10")
-      .then((res) => res.json()) 
-      .then((data) => {
-        setposts(data.posts);
-      })
-      .catch((err) => console.error("Error fetching data:", err));
-  }, []);
-    
-  return (
+function ErrorMessage() {
+    return(
+       
     <div className="home">
       <div className="intro">
         <h1>welcome to InkWell</h1>
-        <p>
-          a place where stories are written, ideas are shared, and thoughts come
-          to life.
-        </p>
+        <p>a place where stories are written, ideas are shared, and thoughts come to life.</p>
       </div>
+      
       <div className="stories-header">
         <div className="header"></div>
         <h2>Latest stories</h2>
@@ -30,11 +17,19 @@ function Home() {
           <Link to="/createpost">+ Create New post</Link>
         </div>
       </div>
-      <div className="blog-grid">
-        {posts.map((post) => (
-          <Blogcard post={post} key={post.id} />
-        ))}
+
+      {/* Styled inline error box layout container */}
+      <div className="error-banner">
+        <div className="error-left">
+          <span className="error-icon"><MdOutlineReportGmailerrorred /></span>
+          <div className="error-text-group">
+            <strong>Error: Failed to fetch</strong>
+            <p>We're having trouble connecting to the server. Please check your connection and try again.</p>
+          </div>
+        </div>
+        <button className="retry-btn" onClick={() => window.location.reload()}>Retry</button>
       </div>
+
       <footer className="footer">
         <div className="left">
           <p className="nav-logo">InkWell</p>
@@ -47,7 +42,8 @@ function Home() {
         </div>
       </footer>
     </div>
-  );
+
+    )
 }
 
-export default Home;
+export default ErrorMessage
