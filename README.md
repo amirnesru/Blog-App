@@ -1,6 +1,6 @@
 # 🖋️ InkWell – Personal Blog Application
 
-InkWell is a clean, modern, and responsive blog application built with **React**, **Vite**, **Jotai**, and **CSS**. It allows users to browse blog posts from the **DummyJSON API**, read full articles with comments, create their own local posts, and bookmark their favorite stories.
+InkWell is a clean, modern, and responsive blog application built with **React**, **Jotai**, and **CSS**. It allows users to browse blog posts from the **DummyJSON API**, read full articles with comments, create their own local posts, and bookmark their favorite stories.
 
 ---
 
@@ -39,13 +39,7 @@ InkWell is a clean, modern, and responsive blog application built with **React**
 ## 🛠️ Tech Stack
 
 - **React**
-- **Vite**
-- **React Router DOM**
-- **Jotai**
 - **CSS3**
-- **React Icons**
-- **DummyJSON API**
-
 ---
 
 ## 📂 Project Structure
