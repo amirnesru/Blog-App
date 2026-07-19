@@ -49,6 +49,34 @@ body {
   box-shadow: 0 4px 20px rgba(4, 130, 139, 0.05);
   max-width: 400px;
 }
+.blog-card .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.save-bookmarks {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #6b7280;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.save-bookmarks:hover {
+  color: #04828b;
+}
+
+.save-bookmarks svg {
+  font-size: 1.1rem;
+}
 
 .tags-container {
   display: flex;
@@ -161,27 +189,24 @@ body {
   font-size: 1rem;
   margin: 0;
 }
-
-.stories-header .btn {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-}
-
-.stories-header .btn button {
-  background-color: #04828b;
+.stories-header .btn a {
+  background-color: #25d1eb;
   color: #ffffff;
-  border: none;
-  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  padding: 0.85rem 1.75rem;
   font-size: 0.95rem;
   font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(4, 130, 139, 0.2);
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
   transition: background-color 0.2s ease;
 }
 
-.stories-header .btn button:hover {
-  background-color: #03666d;
+.stories-header .btn a:hover {
+  background-color: #52a4b3;
+}
+a {
+  text-decoration: none;
 }
 
 .blog-grid {
@@ -299,5 +324,139 @@ body {
 }
 
 .bookmark-btn:hover {
+  background-color: #1d4ed8;
+}
+/*blogform css*/
+.form-container {
+  max-width: 650px;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  padding: 0 1rem;
+}
+
+.form-container h2 {
+  color: #111827;
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.form-subtitle {
+  color: #596272;
+  margin: 0 0 1rem 0;
+}
+
+.form-field {
+  background-color: white;
+  padding:2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: rgb(118, 219, 245) solid 1px;
+  border-radius: 8px;
+}
+
+.form-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.field-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.word-count {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.form-field input[type="text"],
+.form-field textarea {
+  width: 100%;
+  padding: 1rem;
+  background-color: #e3e3e4;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #111827;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.form-field textarea {
+  min-height: 250px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.image-upload-box {
+  width: 100%;
+  border: 2px dashed #e5e7eb;
+  border-radius: 12px;
+  background-color: #e5e7eb;
+  box-sizing: border-box;
+}
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.upload-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.upload-label p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.post-btn {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.post-btn button {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.post-btn .save {
+  background-color: transparent;
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+}
+
+.post-btn .save:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.post-btn .post {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+}
+
+.post-btn .post:hover {
   background-color: #1d4ed8;
 }

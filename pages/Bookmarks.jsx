@@ -8,7 +8,7 @@ function Bookmarks() {
             <FaRegBookmark />
             <h2>No Bookmark Posts yet</h2>
             <p>save articles you want to read later by clicking the book mark icons on any post preview</p>
-            <div  className="bookmark-btn">Browse Latest posts</div>
+            <Link to={"/"}  className="bookmark-btn">Browse Latest posts</Link>
         </div>
     )
 }

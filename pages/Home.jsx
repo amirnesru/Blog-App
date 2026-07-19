@@ -1,56 +1,18 @@
 import Blogcard from "../components/BlogCard";
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 function Home() {
-  const posts = [
-    {
-      id: 1,
-      title: "His mother had always taught him",
-      body: "His mother had always taught him not to ever think...",
-      tags: ["history", "crime"],
-      reactions: { likes: 192 },
-      userId: 121,
-    },
-    {
-      id: 1,
-      title: "His mother had always taught him",
-      body: "His mother had always taught him not to ever think...",
-      tags: ["history", "crime"],
-      reactions: { likes: 192 },
-      userId: 121,
-    },
-    {
-      id: 1,
-      title: "His mother had always taught him",
-      body: "His mother had always taught him not to ever think...",
-      tags: ["history", "crime"],
-      reactions: { likes: 192 },
-      userId: 121,
-    },
-    {
-      id: 1,
-      title: "His mother had always taught him",
-      body: "His mother had always taught him not to ever think...",
-      tags: ["history", "crime"],
-      reactions: { likes: 192 },
-      userId: 121,
-    },
-    {
-      id: 1,
-      title: "His mother had always taught him",
-      body: "His mother had always taught him not to ever think...",
-      tags: ["history", "crime"],
-      reactions: { likes: 192 },
-      userId: 121,
-    },
-    {
-      id: 1,
-      title: "His mother had always taught him",
-      body: "His mother had always taught him not to ever think...",
-      tags: ["history", "crime"],
-      reactions: { likes: 192 },
-      userId: 121,
-    },
-  ];
+  const [posts, setposts] = useState([])
+  useEffect(() => {
+    fetch("https://dummyjson.com/posts?limit=10")
+      .then((res) => res.json()) 
+      .then((data) => {
+        setposts(data.posts);
+      })
+      .catch((err) => console.error("Error fetching data:", err));
+  }, []);
+    
   return (
     <div className="home">
       <div className="intro">
@@ -65,7 +27,7 @@ function Home() {
         <h2>Latest stories</h2>
         <p>Explor fresh stories and insights from our writers</p>
         <div className="btn">
-          <button>+ Create New post</button>
+          <Link to="/createpost">+ Create New post</Link>
         </div>
       </div>
       <div className="blog-grid">
