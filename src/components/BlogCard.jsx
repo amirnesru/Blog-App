@@ -34,7 +34,7 @@ function Blogcard({ post }) {
       </div>
 
       <h3 className="blog-name">{post.title}</h3>
-      <p className="blog-dicr">{post.body}</p>
+      <p className="blog-dicr">{post.body|| post.content}</p>
       <span className="read-more">READ MORE ➜</span>
     </Link>
   );

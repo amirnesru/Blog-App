@@ -3,8 +3,11 @@ import ErrorMessage from "../components/ErrorMessage";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAtom } from "jotai";
+import { postsAtom } from "../atoms/postAtoms";
 function Home() {
-  const [posts, setposts] = useState([]);
+  const [apiPosts, setApiPosts] = useState([]);
+  const [createdPosts] = useAtom(postsAtom);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
@@ -16,7 +19,7 @@ function Home() {
         return res.json();
       })
       .then((data) => {
-        setposts(data.posts);
+        setApiPosts(data.posts);
         setLoading(false);
       })
       .catch((err) => {
@@ -28,9 +31,9 @@ function Home() {
     return <div className="loading-state">Loading fresh stories...</div>;
   }
   if (error) {
-    return (
-    <ErrorMessage/>)
+    return <ErrorMessage />;
   }
+  const posts = [...createdPosts, ...apiPosts];
   return (
     <div className="home">
       <div className="intro">
