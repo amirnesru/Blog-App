@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { PiBookmarkSimpleThin } from "react-icons/pi";
 import { BiLike, BiDislike } from "react-icons/bi";
 import { useAtom } from "jotai";
+import { postsAtom } from "../atoms/postAtoms";
 import { bookmarksAtom } from "../atoms/bookmarkAtoms";
 import { PiBookmarkSimpleFill } from "react-icons/pi";
 
@@ -11,7 +12,8 @@ function BlogDetail() {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [bookmarks, setBookmarks] = useAtom(bookmarksAtom);
+  const [bookmarks, setBookmarks] = useAtom(bookmarksAtom)
+  const [createdPosts] = useAtom(postsAtom);;
 const isBookmarked = bookmarks.some((b) => b.id === post?.id);
 
   function toggleBookmark() {
@@ -23,6 +25,17 @@ const isBookmarked = bookmarks.some((b) => b.id === post?.id);
   }
 }
   useEffect(() => {
+      const createdPost = createdPosts.find(
+    (p) => p.id === Number(id)
+  );
+
+  if (createdPost) {
+    setPost(createdPost);
+    setComments([]);
+    setLoading(false);
+    return;
+  }
+
     Promise.all([
       fetch(`https://dummyjson.com/posts/${id}`),
       fetch(`https://dummyjson.com/posts/${id}/comments`),
@@ -74,7 +87,7 @@ const isBookmarked = bookmarks.some((b) => b.id === post?.id);
             </div>
           )}
 
-          <p className="article-paragraph-lead">{post?.body}</p>
+          <p className="article-paragraph-lead">{post?.body || post.content}</p>
           <div className="post-reactions">
             <span className="reaction-badge likes">
               <BiLike /> {post?.reactions?.likes || 0}
