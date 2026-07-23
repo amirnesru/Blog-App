@@ -12,29 +12,73 @@ function BlogDetail() {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [bookmarks, setBookmarks] = useAtom(bookmarksAtom)
-  const [createdPosts] = useAtom(postsAtom);;
-const isBookmarked = bookmarks.some((b) => b.id === post?.id);
+  const [bookmarks, setBookmarks] = useAtom(bookmarksAtom);
+  const [createdPosts] = useAtom(postsAtom);
+  const [likes, setLikes] = useState(0);
+  const [dislikes, setDislikes] = useState(0);
+  const [userReaction, setUserReaction] = useState(null);
+  const isBookmarked = bookmarks.some((b) => b.id === post?.id);
 
   function toggleBookmark() {
-  if (!post) return;
-  if (isBookmarked) {
-    setBookmarks(bookmarks.filter((b) => b.id !== post.id));
-  } else {
-    setBookmarks([...bookmarks, post]);
+    if (!post) return;
+    if (isBookmarked) {
+      setBookmarks(bookmarks.filter((b) => b.id !== post.id));
+    } else {
+      setBookmarks([...bookmarks, post]);
+    }
   }
+  useEffect(() => {
+    if (post) {
+      setLikes(post.reactions?.likes || 0);
+      setDislikes(post.reactions?.dislikes || 0);
+      setUserReaction(null);
+    }
+  }, [post]);
+  function handleLike() {
+    if (userReaction === "like") {
+      setLikes(likes - 1);
+      setUserReaction(null);
+    } else if (userReaction === "dislike") {
+      setDislikes(dislikes - 1);
+      setLikes(likes + 1);
+      setUserReaction("like");
+    } else {
+      setLikes(likes + 1);
+      setUserReaction("like");
+    }
+  }
+
+  function handleDislike() {
+    if (userReaction === "dislike") {
+      setDislikes(dislikes - 1);
+      setUserReaction(null);
+    } else if (userReaction === "like") {
+      setLikes(likes - 1);
+      setDislikes(dislikes + 1);
+      setUserReaction("dislike");
+    } else {
+      setDislikes(dislikes + 1);
+      setUserReaction("dislike");
+    }
+  }
+  function handleCommentLike(id) {
+  setComments(
+    comments.map((comment) =>
+      comment.id === id
+        ? { ...comment, likes: comment.likes + 1 }
+        : comment
+    )
+  );
 }
   useEffect(() => {
-      const createdPost = createdPosts.find(
-    (p) => p.id === Number(id)
-  );
+    const createdPost = createdPosts.find((p) => p.id === Number(id));
 
-  if (createdPost) {
-    setPost(createdPost);
-    setComments([]);
-    setLoading(false);
-    return;
-  }
+    if (createdPost) {
+      setPost(createdPost);
+      setComments([]);
+      setLoading(false);
+      return;
+    }
 
     Promise.all([
       fetch(`https://dummyjson.com/posts/${id}`),
@@ -50,7 +94,7 @@ const isBookmarked = bookmarks.some((b) => b.id === post?.id);
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [id]);
+  }, [id, createdPosts]);
 
   if (loading)
     return <div className="loading-state">Loading fresh narrative...</div>;
@@ -74,9 +118,13 @@ const isBookmarked = bookmarks.some((b) => b.id === post?.id);
               ))}
             </div>
             <button className="save-bookmarks" onClick={toggleBookmark}>
-  {isBookmarked ? <PiBookmarkSimpleFill style={{ color: "#1d4ed8" }} /> : <PiBookmarkSimpleThin />}
-  Bookmarks
-</button>
+              {isBookmarked ? (
+                <PiBookmarkSimpleFill style={{ color: "#1d4ed8" }} />
+              ) : (
+                <PiBookmarkSimpleThin />
+              )}
+              Bookmarks
+            </button>
           </div>
 
           <h1 className="article-main-title">{post?.title}</h1>
@@ -87,13 +135,30 @@ const isBookmarked = bookmarks.some((b) => b.id === post?.id);
             </div>
           )}
 
-          <p className="article-paragraph-lead">{post?.body || post.content}</p>
+          <p className="article-paragraph-lead">
+            {post?.body || post?.content}
+          </p>
           <div className="post-reactions">
-            <span className="reaction-badge likes">
-              <BiLike /> {post?.reactions?.likes || 0}
+            <span
+              className="reaction-badge likes"
+              onClick={handleLike}
+              style={{
+                cursor: "pointer",
+                color: userReaction === "like" ? "#2563eb" : "",
+              }}
+            >
+              <BiLike /> {likes}
             </span>
-            <span className="reaction-badge dislikes">
-              <BiDislike /> {post?.reactions?.dislikes || 0}
+
+            <span
+              className="reaction-badge dislikes"
+              onClick={handleDislike}
+              style={{
+                cursor: "pointer",
+                color: userReaction === "dislike" ? "#dc2626" : "",
+              }}
+            >
+              <BiDislike /> {dislikes}
             </span>
           </div>
         </article>
@@ -107,12 +172,15 @@ const isBookmarked = bookmarks.some((b) => b.id === post?.id);
                   @{comment.user.username}
                 </span>
                 <p className="commenter-text">{comment.body}</p>
-            
-                  <span className="reaction-badge likes">
-                    <BiLike /> {comment?.likes || 0}
-                  </span>
-                </div>
-        
+
+                <span
+                  className="reaction-badge likes"
+                  onClick={() => handleCommentLike(comment.id)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <BiLike /> {comment.likes}
+                </span>
+              </div>
             ))}
           </div>
         </section>
